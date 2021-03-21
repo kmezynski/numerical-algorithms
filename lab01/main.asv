@@ -61,17 +61,7 @@ det(A)
 
 %% Task 8: IF matrix is symetric and positive-defiinite apply Cholesky factorization
 %A = [1 -1 0 0; -1 2 -1 0; 0 -1 2 -1; 0 0 -1 2];
-A = [1,2;2,1]; %not positive-definite matrix
-
-if(issymmetric(A))
-    if(isPosDef(A))
-        [L] = Cholesky_factor(A);
-    else
-        disp('matrix is not positive-definite')
-    end
-else
-    disp('matrix is not symetric')
-end
-
+%A = [1,2;2,1]; not positive-definite matri
+[L] = Cholesky_factor(A);
 
 
