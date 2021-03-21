@@ -73,13 +73,6 @@ else
     disp('matrix is not symetric')
 end
 
-%% Task 9: A = pascal(100) if(posDef) -> Cholesky factorization. Interpret obtained factor
-%Works for pascal up to 19, 
-A=pascal(100);
 
-    if(isPosDef(A))
-        [L] = Cholesky_factor(A);
-    else
-        disp('matrix is not positive-definite')
-    end
+
 
