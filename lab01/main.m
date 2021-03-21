@@ -92,3 +92,69 @@ A=pascal(100);
         disp('matrix is not positive-definite')
     end
 
+%% Task 13: Create random matrix with uniform distribution, Compare direct methods that solve the system. Different methods and different sizes of matrix
+M = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100]';
+N = 50;
+[m,~]=size(M);
+MatrixSize =0;
+Time = 0;
+ResultsG = zeros(m,4);
+ResultsGPP = zeros(m,4);
+ResultsGCP = zeros(m,4);
+
+for (i=1:m)
+
+x = rand(M(i)*N,1);
+C = rand(M(i),M(i));
+A = kron(eye(N), C'*C);
+b = A*x;
+Xest = zeros(size(x));
+
+
+
+%gaussNoPivot
+% tic;
+% Xe = gaussNoPivot([A,b]);
+% Xest = backSubstitution(Xe);
+% Time = toc;
+% 
+% M(i)
+% e = norm(abs(Xest-x));
+% ResultsG(i,1) = M(i); % M value
+% ResultsG(i,2) = M(i)*N;  % Matrix size
+% ResultsG(i,3) = e;    % error
+% ResultsG(i,4) = Time; % Time
+
+
+
+
+%gaussPartialPivot
+% tic;
+% Xe = gaussPartialPivot([A,b]);
+% Xest = backSubstitution(Xe);
+% Time = toc;
+% 
+% M(i)
+% e = norm(abs(Xest-x));
+% ResultsGPP(i,1) = M(i); % M value
+% ResultsGPP(i,2) = M(i)*N;  % Matrix size
+% ResultsGPP(i,3) = e;    % error
+% ResultsGPP(i,4) = Time; % Time
+
+
+%GaussCompletePivot
+tic;
+[R2, Q] = gaussCompletePivot([A,b]);
+y = backSubstitution(R2);
+Xest = Q * y;
+Time = toc;
+
+M(i)
+e = norm(abs(Xest-x));
+ResultsGCP(i,1) = M(i); % M value
+ResultsGCP(i,2) = M(i)*N;  % Matrix size
+ResultsGCP(i,3) = e;    % error
+ResultsGCP(i,4) = Time; % Time
+
+
+end
