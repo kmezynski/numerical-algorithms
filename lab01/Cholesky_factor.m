@@ -11,7 +11,7 @@ function [L] = Cholesky_factor(A)
     L = zeros(rows);
     
     
-    
+    % perform Crout's algorithm
     for k = 1:rows
         L(k,k) = sqrt(A(k,k) - sum (L(k, 1:(k-1)).^2));
         for j=(k+1):rows

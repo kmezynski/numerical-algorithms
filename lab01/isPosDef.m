@@ -14,10 +14,10 @@ function [posDef] = isPosDef(A)
     
     
     for i = 1:rows
-            Determinants(i) = det(A(1:i,1:i));
+            Determinants(i) = det(A(1:i,1:i)); %i upper left determinants
         end
 
-        if (all(Determinants>0))
+        if (all(Determinants>0)) %chceck if all determinants are positive
             posDef=1;
         end 
 end
