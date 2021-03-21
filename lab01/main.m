@@ -32,9 +32,18 @@ C = [A, b];
 
 
 %% Task 4: Solve system of linear equations
-A = [0.835 0667; 0.333 0.266];
+A = [0.835 0.667; 0.333 0.266];
 b = [0.168; 0.067];
 C = [A, b];
+
+R1 = gaussPartialPivot(C)
+x1 = backSubstitution(R1)
+
+b = [0.168; 0.066];
+C = [A, b];
+
+R1 = gaussPartialPivot(C)
+x1 = backSubstitution(R1)
 
 %% Task 5: Find inverse matrix of A to solve the system AX = I_3
 A = [2 1 2; 1 2 3; 4 1 2];
