@@ -93,19 +93,19 @@ A=pascal(100);
     end
 
 %% Task 13: Create random matrix with uniform distribution, Compare direct methods that solve the system. Different methods and different sizes of matrix
-M = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100]';
+M = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110]';
 N = 50;
 [m,~]=size(M);
 MatrixSize =0;
 Time = 0;
-%ResultsG = zeros(m,4);
-%ResultsGPP = zeros(m,4);
-%ResultsGCP = zeros(m,4);
-%ResultsGJ = zeros(m,4);
-%ResultsBIM = zeros(m,4);
-%ResultsLU = zeros(m,4);
+ResultsG = zeros(m,4);
+ResultsGPP = zeros(m,4);
+ResultsGCP = zeros(m,4);
+ResultsGJ = zeros(m,4);
+ResultsBIM = zeros(m,4);
+ResultsLU = zeros(m,4);
 ResultsCH = zeros(m,4);
-
+rng('default');
 for (i=1:m)
 
 x = rand(M(i)*N,1);
@@ -115,103 +115,105 @@ b = A*x;
 Xest = zeros(size(x));
 
 
-
+disp('gauss');
 %gaussNoPivot
-% tic;
-% Xe = gaussNoPivot([A,b]);
-% Xest = backSubstitution(Xe);
-% Time = toc;
-% 
-% M(i)
-% e = norm(abs(Xest-x));
-% %e=(abs( Xest-x))./(abs(x));
-% %sum(e)/500
-% 
-% ResultsG(i,1) = M(i); % M value
-% ResultsG(i,2) = M(i)*N;  % Matrix size
-% ResultsG(i,3) = e;    % error
-% ResultsG(i,4) = Time; % Time
+tic;
+Xe = gaussNoPivot([A,b]);
+Xest = backSubstitution(Xe);
+Time = toc;
+
+M(i)
+e = norm(Xest-x)/norm(x);
+%e=(abs( Xest-x))./(abs(x));
+%sum(e)/500
+
+ResultsG(i,1) = M(i); % M value
+ResultsG(i,2) = M(i)*N;  % Matrix size
+ResultsG(i,3) = e;    % error
+ResultsG(i,4) = Time; % Time
 
 
 
-
+disp('gaussPP');
 %gaussPartialPivot
-% tic;
-% Xe = gaussPartialPivot([A,b]);
-% Xest = backSubstitution(Xe);
-% Time = toc;
-% 
-% M(i)
-% e = norm(abs(Xest-x));
-% ResultsGPP(i,1) = M(i); % M value
-% ResultsGPP(i,2) = M(i)*N;  % Matrix size
-% ResultsGPP(i,3) = e;    % error
-% ResultsGPP(i,4) = Time; % Time
+tic;
+Xe = gaussPartialPivot([A,b]);
+Xest = backSubstitution(Xe);
+Time = toc;
 
+M(i)
+e = norm(Xest-x)/norm(x);
+ResultsGPP(i,1) = M(i); % M value
+ResultsGPP(i,2) = M(i)*N;  % Matrix size
+ResultsGPP(i,3) = e;    % error
+ResultsGPP(i,4) = Time; % Time
 
+disp('gaussCP');
 %GaussCompletePivot
-% tic;
-% [R2, Q] = gaussCompletePivot([A,b]);
-% y = backSubstitution(R2);
-% Xest = Q * y;
-% Time = toc;
-% 
-% M(i)
-% e = norm(abs(Xest-x));
-% ResultsGCP(i,1) = M(i); % M value
-% ResultsGCP(i,2) = M(i)*N;  % Matrix size
-% ResultsGCP(i,3) = e;    % error
-% ResultsGCP(i,4) = Time; % Time
+tic;
+[R2, Q] = gaussCompletePivot([A,b]);
+y = backSubstitution(R2);
+Xest = Q * y;
+Time = toc;
 
+M(i)
+e = norm(Xest-x)/norm(x);
+ResultsGCP(i,1) = M(i); % M value
+ResultsGCP(i,2) = M(i)*N;  % Matrix size
+ResultsGCP(i,3) = e;    % error
+ResultsGCP(i,4) = Time; % Time
 
+disp('gaussJordan');
 %Gauss Jordan
-% tic;
-% 
-% RR=gaussJordan([A,b]);
-% Xest = RR(:,501);
-% Time = toc;
-% 
-% M(i)
-% e = norm(abs(Xest-x));
-% ResultsGJ(i,1) = M(i); % M value
-% ResultsGJ(i,2) = M(i)*N;  % Matrix size
-% ResultsGJ(i,3) = e;    % error
-% ResultsGJ(i,4) = Time; % Time
+tic;
 
+RR=gaussJordan([A,b]);
+Xest = RR(:,501);
+Time = toc;
 
+M(i)
+e = norm(Xest-x)/norm(x);
+ResultsGJ(i,1) = M(i); % M value
+ResultsGJ(i,2) = M(i)*N;  % Matrix size
+ResultsGJ(i,3) = e;    % error
+ResultsGJ(i,4) = Time; % Time
+
+disp('BuiltIn');
 %BuiltIn
-% tic;
-% Xest=A\b;
-% Time = toc;
-% 
-% M(i)
-% e = norm(abs(Xest-x));
-% ResultsBIM(i,1) = M(i); % M value
-% ResultsBIM(i,2) = M(i)*N;  % Matrix size
-% ResultsBIM(i,3) = e;    % error
-% ResultsBIM(i,4) = Time; % Time
+tic;
+Xest=A\b;
+Time = toc;
+
+M(i)
+e = norm(Xest-x)/norm(x);
+ResultsBIM(i,1) = M(i); % M value
+ResultsBIM(i,2) = M(i)*N;  % Matrix size
+ResultsBIM(i,3) = e;    % error
+ResultsBIM(i,4) = Time; % Time
 
 
 
 %LU
-% tic;
-% 
-% [L, U] = LUFactor([A,b]);
-% y = forwardSubstitution([L, b]);
-% Xest = backSubstitution([U, y]);
-% 
-% Time = toc;
-% 
-% M(i)
-% e = norm(abs(Xest-x));
-% ResultsLU(i,1) = M(i); % M value
-% ResultsLU(i,2) = M(i)*N;  % Matrix size
-% ResultsLU(i,3) = e;    % error
-% ResultsLU(i,4) = Time; % Time
+disp('LU');
+tic;
+
+[L, U] = LUFactor([A,b]);
+y = forwardSubstitution([L, b]);
+Xest = backSubstitution([U, y]);
+
+Time = toc;
+
+M(i)
+e = norm(Xest-x)/norm(x);
+ResultsLU(i,1) = M(i); % M value
+ResultsLU(i,2) = M(i)*N;  % Matrix size
+ResultsLU(i,3) = e;    % error
+ResultsLU(i,4) = Time; % Time
 
 
 
 %Cholesky
+disp('Cholesky');
 tic;
 
 [L] = Cholesky_factor(A);
@@ -221,7 +223,7 @@ Xest = backSubstitution([L', y]);
 Time = toc;
 
 M(i)
-e = norm(abs(Xest-x));
+e = norm(Xest-x)/norm(x);
 ResultsCH(i,1) = M(i); % M value
 ResultsCH(i,2) = M(i)*N;  % Matrix size
 ResultsCH(i,3) = e;    % error
