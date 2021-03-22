@@ -98,9 +98,13 @@ N = 50;
 [m,~]=size(M);
 MatrixSize =0;
 Time = 0;
-ResultsG = zeros(m,4);
-ResultsGPP = zeros(m,4);
-ResultsGCP = zeros(m,4);
+%ResultsG = zeros(m,4);
+%ResultsGPP = zeros(m,4);
+%ResultsGCP = zeros(m,4);
+%ResultsGJ = zeros(m,4);
+%ResultsBIM = zeros(m,4);
+%ResultsLU = zeros(m,4);
+ResultsCH = zeros(m,4);
 
 for (i=1:m)
 
@@ -120,6 +124,9 @@ Xest = zeros(size(x));
 % 
 % M(i)
 % e = norm(abs(Xest-x));
+% %e=(abs( Xest-x))./(abs(x));
+% %sum(e)/500
+% 
 % ResultsG(i,1) = M(i); % M value
 % ResultsG(i,2) = M(i)*N;  % Matrix size
 % ResultsG(i,3) = e;    % error
@@ -143,18 +150,81 @@ Xest = zeros(size(x));
 
 
 %GaussCompletePivot
+% tic;
+% [R2, Q] = gaussCompletePivot([A,b]);
+% y = backSubstitution(R2);
+% Xest = Q * y;
+% Time = toc;
+% 
+% M(i)
+% e = norm(abs(Xest-x));
+% ResultsGCP(i,1) = M(i); % M value
+% ResultsGCP(i,2) = M(i)*N;  % Matrix size
+% ResultsGCP(i,3) = e;    % error
+% ResultsGCP(i,4) = Time; % Time
+
+
+%Gauss Jordan
+% tic;
+% 
+% RR=gaussJordan([A,b]);
+% Xest = RR(:,501);
+% Time = toc;
+% 
+% M(i)
+% e = norm(abs(Xest-x));
+% ResultsGJ(i,1) = M(i); % M value
+% ResultsGJ(i,2) = M(i)*N;  % Matrix size
+% ResultsGJ(i,3) = e;    % error
+% ResultsGJ(i,4) = Time; % Time
+
+
+%BuiltIn
+% tic;
+% Xest=A\b;
+% Time = toc;
+% 
+% M(i)
+% e = norm(abs(Xest-x));
+% ResultsBIM(i,1) = M(i); % M value
+% ResultsBIM(i,2) = M(i)*N;  % Matrix size
+% ResultsBIM(i,3) = e;    % error
+% ResultsBIM(i,4) = Time; % Time
+
+
+
+%LU
+% tic;
+% 
+% [L, U] = LUFactor([A,b]);
+% y = forwardSubstitution([L, b]);
+% Xest = backSubstitution([U, y]);
+% 
+% Time = toc;
+% 
+% M(i)
+% e = norm(abs(Xest-x));
+% ResultsLU(i,1) = M(i); % M value
+% ResultsLU(i,2) = M(i)*N;  % Matrix size
+% ResultsLU(i,3) = e;    % error
+% ResultsLU(i,4) = Time; % Time
+
+
+
+%Cholesky
 tic;
-[R2, Q] = gaussCompletePivot([A,b]);
-y = backSubstitution(R2);
-Xest = Q * y;
+
+[L] = Cholesky_factor(A);
+y = forwardSubstitution([L, b]);
+Xest = backSubstitution([L', y]);
+
 Time = toc;
 
 M(i)
 e = norm(abs(Xest-x));
-ResultsGCP(i,1) = M(i); % M value
-ResultsGCP(i,2) = M(i)*N;  % Matrix size
-ResultsGCP(i,3) = e;    % error
-ResultsGCP(i,4) = Time; % Time
-
+ResultsCH(i,1) = M(i); % M value
+ResultsCH(i,2) = M(i)*N;  % Matrix size
+ResultsCH(i,3) = e;    % error
+ResultsCH(i,4) = Time; % Time
 
 end
