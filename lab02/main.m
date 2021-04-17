@@ -31,7 +31,7 @@ A_test = X' * L * X;
 % A != A_test thus matrix A isn't diagonalizable
 %% Task 6: Compute eigenpairs for matrix A
 % matrix must be symmetric!
-A = [1.1649 0.4983 0.6005; 0.4983 0.5876 0.7372; 0.6005 0.7372 0.9380];
+A = [1 2 3 4; 1 2 2 3; 0 2 3 2; 0 0 3 4];
 
 [ref_X, ref_L] = eig(A);
 % basic QR iteration algorithm 
