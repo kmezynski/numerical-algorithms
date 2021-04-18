@@ -1,0 +1,70 @@
+%% Task 1: Find the solution that best approximates
+    %the system of inconsistent linear equations
+
+
+
+%% Task 2:  Find the least squares approximating function
+    %of the form a_0 +a_1*x^2+a_2*sin((pi*x)/2)
+
+
+%% Task 3: Find the best fit to the data in the table
+    %with an equation in the form: a_0 +a_1*x_1 +a_2*x_2+a_3*x_3
+
+
+%% Task 4: Using least squares find the "best" straight-line fit 
+    %and the error estimates for the slope and intercept of that line
+
+
+%% Task 5: Predict how far down range the missile will land
+
+
+%% Task 6: Using least squares techniques, fit the following data
+    %with a line y=a_0 + a_1*x and then fit the data with a quadratic
+    %y =a_0+a_1*x+a_2*x^2. Determine which cuvre best fits data by
+    %computing l_2 norm of errors.
+
+
+%% Task 7: Fit the polynomial g(x)to the function f(x) to minimalize the error
+    %the error in the range [0, pi]
+
+
+%% Task 8: Determine the coeficients alpha_i of the cubic polynomial p(x)
+    %that is as close to f(x) as possible
+
+%% Task 9: For the matrix:
+    %A) Find the solution Ax=b that has minimum Euclidean norm
+    %B) estimate rank(A),cond(A), A^+
+    %C) compute orthagonal projectors onto each of the four fundamental
+        %subspaces associated with A
+    %D) find the point in N(A)^⊥ that is closest to b
+
+
+%% Task 10: For matrix A and exact solution x_*:
+    %A) determine the data vector for the model Ax=b, estimate the minimal
+        %norm LS solution 
+    %B) estimate rank(A), cond(A), A^+
+    %C) find N(A) and the missing components that went onto N(A)
+    %D) estimate solution error and residual error
+
+
+%% Task 11: Fit the polynomial(^6) to the generated data in LS sense
+    %compare the estimated coefficients to the true ones
+    %Perturb the system with Gaussian noise
+    % Ilustrate the fitting error (Euclidean norm) vs standard deviation
+    %Estimate the maximal value of σ for which the fitting error 
+    %exceeds 10^-6 assuming double precision arithmetic
+
+
+%% Task 12: For n=10,10^2,10^3,...:
+    %A) estimate minimal norm LS solution
+    %B) apply the iterative refinement to refine an approximate solution
+    %C) estimate rank(A), cond(A),A^+
+    %D) estimate solution error and residual error
+    %E) draw decay of singular values of A and ilustrate the Picard
+    %conditions
+    
+
+%% Task 13: Perform forward projection: A*x^*=b and:
+    %Solve the system of linear equations
+
+
