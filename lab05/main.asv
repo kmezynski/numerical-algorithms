@@ -260,7 +260,7 @@ x_exact = A \ b;
 %, 'Kaczmarz method'
 
  figure(1)
- plot(1:i_lweber, res_lweber, 1:i_jacobi, res_jacobi, 1:i_gs, res_gs, 1:i_sor, res_sor, 1:i_sd, res_sd, 1:i_cg, res_cg, 1:i_kaczmarz, res_kaczmarz, "LineWidth", 2);
+ plot(1:i_lweber, res_lweber, 1:i_jacobi, res_jacobi, 1:i_gs, res_gs, 1:i_sor, res_sor, 1:i_sd, res_sd, 1:i_cg, res_cg,  "LineWidth", 2);
  set(gca, 'XScale', 'log')
  legend('Landweber method', 'Jacobi method', 'Gauss-Seidel method', 'SOR method', 'SD method', 'CG method', 'Kaczmarz method');
  title('Residual error','FontSize', 20);
