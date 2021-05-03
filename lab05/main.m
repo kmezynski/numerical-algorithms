@@ -108,9 +108,9 @@ title('Solution error', 'FontSize', 20);
 grid on;
 
 %% Task 5:
-N = 5;
+%N = 5;
 %N = 10;
-%N = 20;
+N = 20;
 A = hilb(N);
 b = ones(N, 1);
 x_exact = A \ b;
@@ -218,7 +218,7 @@ grid on;
 title('Solution error', 'FontSize', 20);
 
 %% Task 8:
-% N = 10;
+ %N = 10;
 N = 100;
 %N = 1000;
 %N = 10000;
@@ -316,7 +316,7 @@ grid on;
 A = hilb(10);
 x_exact = randn(10, 1);
 b = A*x_exact;
-A(1, 1) = A(1, 1) + 0.01;
+
 
 [~, i_lweber, res_lweber, sol_lweber] = landweber(A, b, x_exact);
 [~, i_jacobi, res_jacobi, sol_jacobi] = jacobi(A, b, x_exact);
@@ -329,6 +329,7 @@ A(1, 1) = A(1, 1) + 0.01;
 figure(1)
 plot(1:i_gs, res_gs, 1:i_sor, res_sor, 1:i_sd, res_sd, 1:i_cg, res_cg, 1:i_kaczmarz, res_kaczmarz, "LineWidth", 2);
 set(gca, 'XScale', 'log')
+xlim([0 10^6]);
 legend('Gauss-Seidel method', 'SOR method', 'SD method', 'CG method', 'Kaczmarz method');
 title('Residual error', 'FontSize', 20);
 grid on;
@@ -336,6 +337,33 @@ grid on;
 figure(2)
 plot(1:i_gs, sol_gs, 1:i_sor, sol_sor, 1:i_sd, sol_sd, 1:i_cg, sol_cg, 1:i_kaczmarz, sol_kaczmarz, "LineWidth", 2);
 set(gca, 'XScale', 'log')
+xlim([0 10^6]);
 legend('Gauss-Seidel method', 'SOR method', 'SD method', 'CG method', 'Kaczmarz method');
 title('Solution error', 'FontSize', 20);
+grid on;
+
+A(1, 1) = A(1, 1) + 0.01;
+[~, i_lweber, res_lweber, sol_lweber] = landweber(A, b, x_exact);
+[~, i_jacobi, res_jacobi, sol_jacobi] = jacobi(A, b, x_exact);
+[~, i_gs, res_gs, sol_gs] = gaussSeidel(A, b, x_exact);
+[~, i_sor, res_sor, sol_sor] = SOR(A, b, x_exact);
+[~, i_sd, res_sd, sol_sd] = SD(A, b, x_exact);
+[~, i_cg, res_cg, sol_cg] = CG(A, b, x_exact);
+[~, i_kaczmarz, res_kaczmarz, sol_kaczmarz] = kaczmarz(A, b, x_exact);
+
+
+figure(3)
+plot(1:i_gs, res_gs, 1:i_sor, res_sor, 1:i_sd, res_sd, 1:i_cg, res_cg, 1:i_kaczmarz, res_kaczmarz, "LineWidth", 2);
+set(gca, 'XScale', 'log')
+xlim([0 10^6]);
+legend('Gauss-Seidel method', 'SOR method', 'SD method', 'CG method', 'Kaczmarz method');
+title('Residual error perturbed system', 'FontSize', 20);
+grid on;
+
+figure(4)
+plot(1:i_gs, sol_gs, 1:i_sor, sol_sor, 1:i_sd, sol_sd, 1:i_cg, sol_cg, 1:i_kaczmarz, sol_kaczmarz, "LineWidth", 2);
+set(gca, 'XScale', 'log')
+xlim([0 10^6]);
+legend('Gauss-Seidel method', 'SOR method', 'SD method', 'CG method', 'Kaczmarz method');
+title('Solution error perturbed system', 'FontSize', 20);
 grid on;
