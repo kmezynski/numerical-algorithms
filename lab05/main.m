@@ -1,0 +1,341 @@
+%% Task 1:
+A = [2 -1 0 0; -1 2 -1 0; 0 -1 2 -1; 0 0 -1 2];
+b = [0; 0; 0; 5];
+x_exact = A \ b;
+
+[~, i_lweber, res_lweber, sol_lweber] = landweber(A, b, x_exact);
+[~, i_jacobi, res_jacobi, sol_jacobi] = jacobi(A, b, x_exact);
+[~, i_gs, res_gs, sol_gs] = gaussSeidel(A, b, x_exact);
+[~, i_sor, res_sor, sol_sor] = SOR(A, b, x_exact);
+[~, i_sd, res_sd, sol_sd] = SD(A, b, x_exact);
+[~, i_cg, res_cg, sol_cg] = CG(A, b, x_exact);
+[~, i_kaczmarz, res_kaczmarz, sol_kaczmarz] = kaczmarz(A, b, x_exact);
+
+figure(1)
+plot(1:i_lweber, res_lweber, 1:i_jacobi, res_jacobi, 1:i_gs, res_gs, 1:i_sor, res_sor, 1:i_sd, res_sd, 1:i_cg, res_cg, 1:i_kaczmarz, res_kaczmarz, "LineWidth", 2);
+set(gca, 'XScale', 'log')
+legend('Landweber method', 'Jacobi method', 'Gauss-Seidel method', 'SOR method', 'SD method', 'CG method', 'Kaczmarz method');
+title('Residual error', 'FontSize', 20);
+grid on;
+
+figure(2)
+plot(1:i_lweber, sol_lweber, 1:i_jacobi, sol_jacobi, 1:i_gs, sol_gs, 1:i_sor, sol_sor, 1:i_sd, sol_sd, 1:i_cg, sol_cg, 1:i_kaczmarz, sol_kaczmarz, "LineWidth", 2);
+set(gca, 'XScale', 'log')
+legend('Landweber method', 'Jacobi method', 'Gauss-Seidel method', 'SOR method', 'SD method', 'CG method', 'Kaczmarz method');
+title('Solution error', 'FontSize', 20);
+grid on;
+
+%% Task 2:
+A = [1 1 1; 1 1 2; 1 2 2];
+b = [1; 2; 1];
+x_exact = A \ b;
+
+[~, i_lweber, res_lweber, sol_lweber] = landweber(A, b, x_exact);
+[~, i_jacobi, res_jacobi, sol_jacobi] = jacobi(A, b, x_exact);
+[~, i_gs, res_gs, sol_gs] = gaussSeidel(A, b, x_exact);
+[~, i_sor, res_sor, sol_sor] = SOR(A, b, x_exact);
+[~, i_sd, res_sd, sol_sd] = SD(A, b, x_exact);
+[~, i_cg, res_cg, sol_cg] = CG(A, b, x_exact);
+[~, i_kaczmarz, res_kaczmarz, sol_kaczmarz] = kaczmarz(A, b, x_exact);
+
+figure(1)
+plot(1:i_lweber, res_lweber, 1:i_cg, res_cg, 1:i_kaczmarz, res_kaczmarz, "LineWidth", 2);
+set(gca, 'XScale', 'log')
+legend('Landweber method', 'CG method', 'Kaczmarz method');
+title('Residual error', 'FontSize', 20);
+grid on;
+
+figure(2)
+plot(1:i_lweber, sol_lweber, 1:i_cg, sol_cg, 1:i_kaczmarz, sol_kaczmarz, "LineWidth", 2);
+set(gca, 'XScale', 'log')
+legend('Landweber method', 'CG method', 'Kaczmarz method');
+title('Solution error', 'FontSize', 20);
+grid on;
+
+%% Task 3:
+A = [0.835 0.667; 0.333 0.266];
+b = [0.168; 0.067];
+%b = [0.168; 0.066];
+x_exact = A \ b
+
+[~, i_lweber, res_lweber, sol_lweber] = landweber(A, b, x_exact);
+[~, i_jacobi, res_jacobi, sol_jacobi] = jacobi(A, b, x_exact);
+[~, i_gs, res_gs, sol_gs] = gaussSeidel(A, b, x_exact);
+[~, i_sor, res_sor, sol_sor] = SOR(A, b, x_exact);
+[~, i_sd, res_sd, sol_sd] = SD(A, b, x_exact);
+[~, i_cg, res_cg, sol_cg] = CG(A, b, x_exact);
+[~, i_kaczmarz, res_kaczmarz, sol_kaczmarz] = kaczmarz(A, b, x_exact);
+
+figure(1)
+plot(1:i_kaczmarz, res_kaczmarz, "LineWidth", 2);
+set(gca, 'XScale', 'log')
+legend('Kaczmarz method');
+title('Residual error', 'FontSize', 20);
+grid on;
+
+figure(2)
+plot(1:i_kaczmarz, sol_kaczmarz, "LineWidth", 2);
+set(gca, 'XScale', 'log')
+legend('Kaczmarz method');
+title('Solution error', 'FontSize', 20);
+grid on;
+
+%% Task 4:
+A = [1 2 3 4; -1 1 2 1; 0 2 1 3; 0 0 1 1];
+b = [1; 1; 1; 1];
+x_exact = A \ b;
+
+[~, i_lweber, res_lweber, sol_lweber] = landweber(A, b, x_exact);
+[~, i_jacobi, res_jacobi, sol_jacobi] = jacobi(A, b, x_exact);
+[~, i_gs, res_gs, sol_gs] = gaussSeidel(A, b, x_exact);
+[~, i_sor, res_sor, sol_sor] = SOR(A, b, x_exact);
+[~, i_sd, res_sd, sol_sd] = SD(A, b, x_exact);
+[~, i_cg, res_cg, sol_cg] = CG(A, b, x_exact);
+[~, i_kaczmarz, res_kaczmarz, sol_kaczmarz] = kaczmarz(A, b, x_exact);
+
+figure(1)
+plot(1:i_lweber, res_lweber, 1:i_kaczmarz, res_kaczmarz, "LineWidth", 2);
+set(gca, 'XScale', 'log')
+legend('Landweber method', 'Kaczmarz method');
+title('Residual error', 'FontSize', 20);
+grid on;
+
+figure(2)
+plot(1:i_lweber, sol_lweber, 1:i_kaczmarz, sol_kaczmarz, "LineWidth", 2);
+set(gca, 'XScale', 'log')
+legend('Landweber method', 'Kaczmarz method');
+title('Solution error', 'FontSize', 20);
+grid on;
+
+%% Task 5:
+N = 5;
+%N = 10;
+%N = 20;
+A = hilb(N);
+b = ones(N, 1);
+x_exact = A \ b;
+
+[~, i_lweber, res_lweber, sol_lweber] = landweber(A, b, x_exact);
+[~, i_jacobi, res_jacobi, sol_jacobi] = jacobi(A, b, x_exact);
+[~, i_gs, res_gs, sol_gs] = gaussSeidel(A, b, x_exact);
+[~, i_sor, res_sor, sol_sor] = SOR(A, b, x_exact);
+[~, i_sd, res_sd, sol_sd] = SD(A, b, x_exact);
+[~, i_cg, res_cg, sol_cg] = CG(A, b, x_exact);
+[~, i_kaczmarz, res_kaczmarz, sol_kaczmarz] = kaczmarz(A, b, x_exact);
+
+% N = 5
+figure(1)
+plot(1:i_lweber, res_lweber, 1:i_gs, res_gs, 1:i_sor, res_sor, 1:i_sd, res_sd, 1:i_cg, res_cg, 1:i_kaczmarz, res_kaczmarz, "LineWidth", 2);
+set(gca, 'XScale', 'log')
+legend('Landweber method', 'Gauss-Seidel method', 'SOR method', 'SD method', 'CG method', 'Kaczmarz method');
+title('Residual error');
+
+figure(2)
+plot(1:i_lweber, sol_lweber, 1:i_gs, sol_gs, 1:i_sor, sol_sor, 1:i_sd, sol_sd, 1:i_cg, sol_cg, 1:i_kaczmarz, sol_kaczmarz, "LineWidth", 2);
+set(gca, 'XScale', 'log')
+legend('Landweber method', 'Gauss-Seidel method', 'SOR method', 'SD method', 'CG method', 'Kaczmarz method');
+title('Solution error');
+
+% N = 10
+% figure(1)
+% plot(1:i_gs, res_gs, 1:i_sor, res_sor, 1:i_sd, res_sd, 1:i_cg, res_cg, 1:i_kaczmarz, res_kaczmarz, "LineWidth", 2);
+% set(gca, 'XScale', 'log')
+% legend('Gauss-Seidel method', 'SOR method', 'SD method', 'CG method', 'Kaczmarz method');
+% title('Residual error');
+
+% figure(2)
+% plot(1:i_gs, sol_gs, 1:i_sor, sol_sor, 1:i_sd, sol_sd, 1:i_cg, sol_cg, 1:i_kaczmarz, sol_kaczmarz, "LineWidth", 2);
+% set(gca, 'XScale', 'log')
+% legend('Gauss-Seidel method', 'SOR method', 'SD method', 'CG method', 'Kaczmarz method');
+% title('Solution error');
+
+% N = 20
+% figure(1)
+% plot(1:i_sd, res_sd, 1:i_cg, res_cg, 1:i_kaczmarz, res_kaczmarz, "LineWidth", 2);
+% set(gca, 'XScale', 'log')
+% legend('CG method', 'Kaczmarz method');
+% title('Residual error');
+
+% figure(2)
+% plot(1:i_sd, sol_sd, 1:i_cg, sol_cg, 1:i_kaczmarz, sol_kaczmarz, "LineWidth", 2);
+% set(gca, 'XScale', 'log')
+% legend('SD method', 'CG method', 'Kaczmarz method');
+% title('Solution error');
+
+%% Task 6:
+N = 5;
+%N = 10;
+%N = 15;
+%N = 20;
+v = 1:N;
+A = vander(v);
+for i = 1:N
+    b(i) = abs(sin(i));
+end
+b = b';
+%b = awgn(b, 30);
+x_exact = A \ b;
+
+[~, i_kaczmarz, res_kaczmarz, sol_kaczmarz] = kaczmarz(A, b, x_exact);
+
+% N = 5, 10, 15, 20
+figure(1)
+plot(1:i_kaczmarz, res_kaczmarz, "LineWidth", 2);
+set(gca, 'XScale', 'log')
+legend('Kaczmarz method');
+title('Residual error');
+
+figure(2)
+plot(1:i_kaczmarz, sol_kaczmarz, "LineWidth", 2);
+set(gca, 'XScale', 'log')
+legend('Kaczmarz method');
+title('Solution error');
+
+%% Task 7:
+N = 10000;
+c = 0:(N-1);
+c = c';
+r = 0:-1:(-N+1);
+A = toeplitz(c, r);
+x_exact = 1:N;
+x_exact = x_exact';
+b = A*x_exact;
+
+[~, i_kaczmarz, res_kaczmarz, sol_kaczmarz] = kaczmarz(A, b, x_exact);
+
+figure(1)
+plot(1:i_kaczmarz, res_kaczmarz, "LineWidth", 2);
+set(gca, 'XScale', 'log')
+legend('Kaczmarz method');
+title('Residual error', 'FontSize', 20);
+grid on;
+
+figure(2)
+plot(1:i_kaczmarz, sol_kaczmarz, "LineWidth", 2);
+set(gca, 'XScale', 'log')
+legend('Kaczmarz method');
+grid on;
+title('Solution error', 'FontSize', 20);
+
+%% Task 8:
+% N = 10;
+N = 100;
+%N = 1000;
+%N = 10000;
+%N = 100000;
+A = sparse(1:N, 1:N, 2);
+B = sparse(1:N-1, 2:N, -1);
+B = [B; zeros(1, N)];
+C = sparse(2:N, 1:N-1, -1);
+C = [C zeros(N, 1)];
+A = A+B+C;
+b = ones(N, 1);
+x_exact = A \ b;
+
+[~, i_lweber, res_lweber, sol_lweber] = landweber(A, b, x_exact);
+[~, i_jacobi, res_jacobi, sol_jacobi] = jacobi(A, b, x_exact);
+[~, i_gs, res_gs, sol_gs] = gaussSeidel(A, b, x_exact);
+[~, i_sor, res_sor, sol_sor] = SOR(A, b, x_exact);
+[~, i_sd, res_sd, sol_sd] = SD(A, b, x_exact);
+[~, i_cg, res_cg, sol_cg] = CG(A, b, x_exact);
+[~, i_kaczmarz, res_kaczmarz, sol_kaczmarz] = kaczmarz(A, b, x_exact);
+
+
+figure(1)
+plot( 1:i_cg, res_cg, "LineWidth", 2);
+set(gca, 'XScale', 'log')
+legend('CG method');
+title('Residual error','FontSize', 20);
+
+figure(2)
+plot( 1:i_cg, sol_cg, "LineWidth", 2);
+set(gca, 'XScale', 'log')
+legend('CG method');
+title('Solution error','FontSize', 20);
+
+% figure(1)
+% plot(1:i_lweber, res_lweber, 1:i_jacobi, res_jacobi, 1:i_gs, res_gs, 1:i_sor, res_sor, 1:i_sd, res_sd, 1:i_cg, res_cg, 1:i_kaczmarz, res_kaczmarz, "LineWidth", 2);
+% set(gca, 'XScale', 'log')
+% legend('Landweber method', 'Jacobi method', 'Gauss-Seidel method', 'SOR method', 'SD method', 'CG method', 'Kaczmarz method');
+% title('Residual error','FontSize', 20);
+
+% figure(2)
+% plot(1:i_lweber, sol_lweber, 1:i_jacobi, sol_jacobi, 1:i_gs, sol_gs, 1:i_sor, sol_sor, 1:i_sd, sol_sd, 1:i_cg, sol_cg, 1:i_kaczmarz, sol_kaczmarz, "LineWidth", 2);
+% set(gca, 'XScale', 'log')
+% legend('Landweber method', 'Jacobi method', 'Gauss-Seidel method', 'SOR method', 'SD method', 'CG method', 'Kaczmarz method');
+% title('Solution error','FontSize', 20);
+
+%% Task 9:
+M = 100;
+N = 50;
+C = rand(M, M);
+x_exact = randn(M*N, 1);
+I = eye(N);
+Kr = kron(I, C.'*C);
+A = Kr(:, :);
+A = sparse(A);
+b = Kr*x_exact;
+
+[~, i_lweber, res_lweber, sol_lweber] = landweber(A, b, x_exact);
+[~, i_jacobi, res_jacobi, sol_jacobi] = jacobi(A, b, x_exact);
+[~, i_gs, res_gs, sol_gs] = gaussSeidel(A, b, x_exact);
+[~, i_sor, res_sor, sol_sor] = SOR(A, b, x_exact);
+[~, i_sd, res_sd, sol_sd] = SD(A, b, x_exact);
+[~, i_cg, res_cg, sol_cg] = CG(A, b, x_exact);
+[~, i_kaczmarz, res_kaczmarz, sol_kaczmarz] = kaczmarz(A, b, x_exact);
+
+figure(1)
+plot(1:i_lweber, res_lweber, 1:i_sd, res_sd, 1:i_cg, res_cg, 1:i_kaczmarz, res_kaczmarz, "LineWidth", 2);
+set(gca, 'XScale', 'log')
+legend('Landweber method', 'SD method', 'CG method', 'Kaczmarz method');
+title('Residual error', 'FontSize', 20);
+grid on;
+
+figure(2)
+plot(1:i_lweber, sol_lweber, 1:i_sd, sol_sd, 1:i_cg, sol_cg, 1:i_kaczmarz, sol_kaczmarz, "LineWidth", 2);
+set(gca, 'XScale', 'log')
+legend('Landweber method', 'SD method', 'CG method', 'Kaczmarz method');
+title('Solution error', 'FontSize', 20);
+grid on;
+
+% figure(1)
+% plot(1:i_lweber, res_lweber, 1:i_sd, res_sd, 1:i_cg, res_cg, "LineWidth", 2);
+% set(gca, 'XScale', 'log')
+% legend('Landweber method', 'SD method', 'CG method');
+% title('Residual error', 'FontSize', 20);
+% grid on;
+
+% figure(2)
+% plot(1:i_lweber, sol_lweber, 1:i_sd, sol_sd, 1:i_cg, sol_cg, "LineWidth", 2);
+% set(gca, 'XScale', 'log')
+% legend('Landweber method', 'SD method', 'CG method');
+% title('Solution error', 'FontSize', 20);
+% grid on;
+
+%% Task 10:
+A = hilb(10);
+x_exact = randn(10, 1);
+b = A*x_exact;
+A(1, 1) = A(1, 1) + 0.01;
+
+[~, i_lweber, res_lweber, sol_lweber] = landweber(A, b, x_exact);
+[~, i_jacobi, res_jacobi, sol_jacobi] = jacobi(A, b, x_exact);
+[~, i_gs, res_gs, sol_gs] = gaussSeidel(A, b, x_exact);
+[~, i_sor, res_sor, sol_sor] = SOR(A, b, x_exact);
+[~, i_sd, res_sd, sol_sd] = SD(A, b, x_exact);
+[~, i_cg, res_cg, sol_cg] = CG(A, b, x_exact);
+[~, i_kaczmarz, res_kaczmarz, sol_kaczmarz] = kaczmarz(A, b, x_exact);
+
+figure(1)
+plot(1:i_gs, res_gs, 1:i_sor, res_sor, 1:i_sd, res_sd, 1:i_cg, res_cg, 1:i_kaczmarz, res_kaczmarz, "LineWidth", 2);
+set(gca, 'XScale', 'log')
+legend('Gauss-Seidel method', 'SOR method', 'SD method', 'CG method', 'Kaczmarz method');
+title('Residual error', 'FontSize', 20);
+grid on;
+
+figure(2)
+plot(1:i_gs, sol_gs, 1:i_sor, sol_sor, 1:i_sd, sol_sd, 1:i_cg, sol_cg, 1:i_kaczmarz, sol_kaczmarz, "LineWidth", 2);
+set(gca, 'XScale', 'log')
+legend('Gauss-Seidel method', 'SOR method', 'SD method', 'CG method', 'Kaczmarz method');
+title('Solution error', 'FontSize', 20);
+grid on;
